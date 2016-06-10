@@ -44,8 +44,6 @@
 #define snprintf _snprintf    // see comment in strutil.cc
 #elif defined(HAVE_PTHREAD)
 #include <pthread.h>
-#else
-#error "No suitable threading library available."
 #endif
 
 namespace google {

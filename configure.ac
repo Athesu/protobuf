@@ -144,7 +144,7 @@ case "$target_os" in
     ;;
   *)
     # Need to link against rt on Solaris
-    AC_SEARCH_LIBS([sched_yield], [rt], [], [AC_MSG_FAILURE([sched_yield was not found on your system])])
+    #AC_SEARCH_LIBS([sched_yield], [rt], [], [AC_MSG_FAILURE([sched_yield was not found on your system])])
     ;;
 esac
 
