@@ -317,6 +317,30 @@ void Mutex::AssertHeld() {
 
 #endif
 
+#ifdef GOOGLE_PROTOBUF_NO_THREAD_SAFETY
+
+// Stub out all the mutex code, as we're omitting thread-safe compilation
+struct Mutex::Internal {
+};
+
+Mutex::Mutex()
+  : mInternal(new Internal) {
+}
+
+Mutex::~Mutex() {
+}
+
+void Mutex::Lock() {
+}
+
+void Mutex::Unlock() {
+}
+
+void Mutex::AssertHeld() {
+}
+
+#endif
+
 // ===================================================================
 // emulates google3/util/endian/endian.h
 //
