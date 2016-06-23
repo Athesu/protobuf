@@ -6,19 +6,30 @@
 # exit on any command that returns a non-zero status
 set -e
 
+# Help for a couple common problems
+echo "You must run this script from a Cygwin command prompt (not the 'terminal' in SourceTree).
+
+Aside from the default packages within Cygwin, make sure you install these as well:
+autoconf (wrapper)
+automake (wrapper)
+libtool
+gcc-g++
+make
+
+If you get errors about a missing msvc file in the gtest directory, recursively reset hard the protobuf repo.
+
+
+"
+
 # autogen has the wrong line endings for unix.  Fix them.
-COMMAND="dos2unix autogen.sh"
-eval $COMMAND
+eval "dos2unix autogen.sh"
 
 # Generate our autoconf script
-COMMAND="./autogen.sh"
-eval $COMMAND
+eval "./autogen.sh"
 
 # This sets up the repo and generates the makefiles and compile switches for our target
-COMMAND="./configure --host=arm-none-eabi CPPFLAGS='-DGOOGLE_PROTOBUF_NO_THREAD_SAFETY' LDFLAGS='--specs=nosys.specs'"
-eval $COMMAND
+eval "./configure --disable-shared --host=arm-none-eabi CPPFLAGS='-mthumb -mlittle-endian -ggdb -mcpu=cortex-m3 -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DGOOGLE_PROTOBUF_NO_THREAD_SAFETY' LDFLAGS='-mthumb -mcpu=cortex-m3 --specs=nosys.specs'"
 
 # Build our target lib
 cd src
-COMMAND="make -j8 libprotobuf-lite.la"
-eval $COMMAND
+eval "make -j8 libprotobuf-lite.la"
