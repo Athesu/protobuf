@@ -28,7 +28,7 @@ eval "dos2unix autogen.sh"
 eval "./autogen.sh"
 
 # This sets up the repo and generates the makefiles and compile switches for our target
-eval "./configure --disable-shared --host=arm-none-eabi CPPFLAGS='-mthumb -mlittle-endian -ggdb -mcpu=cortex-m3 -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DGOOGLE_PROTOBUF_NO_THREAD_SAFETY' LDFLAGS='-mthumb -mcpu=cortex-m3 --specs=nosys.specs'"
+eval "./configure --disable-shared --host=arm-none-eabi CPPFLAGS='-std=c++11 -mthumb -mlittle-endian -ggdb -mcpu=cortex-m3 -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DGOOGLE_PROTOBUF_NO_THREAD_SAFETY' LDFLAGS='-mthumb -mcpu=cortex-m3 --specs=nosys.specs'"
 
 # Build our target lib
 cd src
