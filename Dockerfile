@@ -35,7 +35,7 @@ WORKDIR /home/protobuf/
 RUN dos2unix autogen.sh Makefile.am
 
 # Generate the autogen file and configure.
-RUN ./autogen.sh && autoreconf -f -i -Wall,no-obsolete
+RUN ./autogen.sh
 
 # Configure the file
 RUN ./configure --disable-shared --host=arm-none-eabi CPPFLAGS='-std=c++11 -mthumb -mlittle-endian -ggdb -mcpu=cortex-m3 -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DGOOGLE_PROTOBUF_NO_THREAD_SAFETY' LDFLAGS='-mthumb -mcpu=cortex-m3 --specs=nosys.specs'

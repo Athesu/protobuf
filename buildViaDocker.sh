@@ -21,7 +21,7 @@ eval "cd src"
 eval "echo \"Completed changing to src folder.\""
 
 # copy back out
-eval "echo \"Copying libprotobuf-lite back out of the container.\""
+eval "echo \"Copying libprotobuf-lite back out of the container into src/.libs/\""
 eval "docker cp protobufBuild:/home/protobuf/src/.libs/libprotobuf-lite.a .libs"
 eval "echo \"Finished copying.\""
 eval "echo \"Exiting.\""
