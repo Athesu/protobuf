@@ -3,6 +3,12 @@ FROM ubuntu:impish-20220128 AS build
 # Set current user as root to install things.
 USER root
 
+# Add mirrors.
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt impish main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt impish-updates main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt impish-backports main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt impish-security main restricted universe multiverse\n\n" >> /etc/apt/sources.list
+
 # Dependencies for building the protobuf.
 RUN apt-get update && apt-get install -y --no-install-recommends \
        build-essential=12.9ubuntu2 \
